@@ -1,0 +1,1 @@
+d /var/log/celery 0755 celery celery -
