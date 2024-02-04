@@ -2,7 +2,6 @@ from celery import Celery
 
 REDIS_URL = "redis://localhost:6379/0"
 
-
 # Configure Celery to use Redis as the message broker
 app = Celery(
     "tasks",
@@ -15,4 +14,11 @@ app = Celery(
 # Define a simple task
 @app.task
 def ping(message):
+    """
+    A simple task that echoes the message it receives.
+
+    Args:
+        message (str): The message to echo
+    """
+
     return message

@@ -3,9 +3,11 @@ PROJECT_ROOT_DIR=$(pwd)
 
 
 # Install the required packages
-# sudo apt update
-sudo apt-get install python3 python3-pip
+sudo apt update
+sudo apt-get install redis -y
+sudo apt-get install python3 python3-pip -y
 sudo pip3 install virtualenv
+pip install celery[redis]
 
 # Load celery config file
 . util/systemd/celery.conf
@@ -24,11 +26,11 @@ sudo mkdir -p /var/run/celery
 echo "Copying the celery worker file"
 sudo cp src/celery/tasks.py /opt/celery/tasks.py
 
-# Add permissions to the celery user
-sudo chown -R celery:celery /var/log/celery
+# Add permissions for the celery user
 sudo chown -R celery:celery /etc/conf.d/celery
 sudo chown -R celery:celery /opt/celery
 sudo chown -R celery:celery /var/log/celery/
+sudo chown -R celery:celery /var/run/celery
 sudo chmod -R u+rw /var/log/celery/
 
 # Setup virtual python env for celery

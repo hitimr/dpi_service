@@ -12,17 +12,20 @@ def main(message):
     Args:
         message (str): The message to send to the Celery worker
     """
+
+    # Connect to the Celery worker
     app = Celery(
         "tasks",
         broker=REDIS_URL,
         backend=REDIS_URL,
     )
 
+    # Send the message to the Celery worker
     result = app.send_task("tasks.ping", args=[message])
 
     # Attempt to get the result with a timeout
     try:
-        response = result.get(timeout=10)  # Adjust timeout as needed
+        response = result.get(timeout=10) 
         print("Task response:", response)
     except Exception as e:
         print("Error getting task result:", e)
@@ -35,4 +38,4 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    main(args)
+    main(args.message)
