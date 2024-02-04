@@ -1,15 +1,22 @@
 # Installation
 
-Install the following dependecies:
+Just run the install script:
 
 ```bash
-# Install redis server and python dependencies
-sudo apt install redis-server
-pip install -r requirements.txt
+./install.sh
+```
 
-# Start the redis server
-sudo service redis-server start
+This will do the following things:
 
-# Test if the server is running
-redis-cli ping
+-   Install all required dependencies
+-   create a celery system user
+-   create a virtual environment for the celery user
+-   install the celery worker as a systemd service
+
+# Testing
+
+To check if the installation was successful, you can run the following command:
+
+```bash
+python3 test_celery.py
 ```
