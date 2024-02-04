@@ -1,4 +1,10 @@
-# Installation
+# Daemonized Celery Worker
+This repository contains a simple example of how to daemonize a celery worker. 
+The worker is started as a systemd service and runs in a virtual environment.
+
+The service can be tested by running the `test_celery.py` script.
+
+## Installation
 
 Just run the install script:
 
@@ -14,7 +20,7 @@ This will do the following things:
 -   install the celery worker as a systemd service
 -   start the celery worker   
 
-# Testing
+## Testing
 
 To check if the installation was successful, you can run the following command:
 
